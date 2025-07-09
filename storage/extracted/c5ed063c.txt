@@ -1,0 +1,74 @@
+Page 1:
+Karishnii Kuber
+Bengaluru,Karnataka
++91 7022784565
+karishniikuber@gmail.com
+https://github.com/karish-123
+Education
+PES University
+Computer Science and Engineering
+8.53
+current 3rd year student , 2022-2026
+Bachelor of Technology (B.Tech)
+Centre for Innovation and Entrepreneurship
+PES University
+Completed a course focusing on entrepreneurial skills, innovation methodologies, and technology leadership.
+Relevant Projects
+Stock Price Predictor Using GRU Model
+Developed a Streamlit-based dashboard to predict next-day stock prices of Indian companies (RELIANCE, TCS,
+COLPAL, INFY, etc.)
+Built GRU models for time series forecasting using technical indicators and EDA features
+Designed dark-themed UI with glowing buttons and animated charts
+Tools: Python, TensorFlow, Streamlit, Plotly
+Emotion Recognition System
+Engineered multimodal emotion recognition using audio-visual data from conversational datasets
+Implemented early and late fusion techniques
+Technologies: TensorFlow, PyTorch, librosa, scikit-learn
+Vehicle Demand Forecasting System
+Developed time series models using SARIMAX for car/bike demand prediction
+Applied XGBoost to model auto-rickshaw demand with seasonal patterns
+Tools: Python, pandas, statsmodels, XGBoost
+Placement Portal Development
+Built a placement portal for streamlining the process for placement officers
+Used React.js for frontend and Go for backend; focused on server-side logic and APIs
+Technologies: React.js, Go
+Distributed Logging System
+Collaborated on a distributed system using Apache Kafka and Flink
+Implemented containerization with Docker and real-time streaming architectures
+Tools: Apache Kafka, Flink, Docker
+Ray Tracing Optimization using Heterogeneous Parallelism
+Developed and benchmarked 4 versions: basic CPU ray tracer, BVH-optimized, Metal-based GPU (Swift), and a
+heterogeneous CPU-GPU implementation
+Achieved a 17,000× speedup, reducing frame render time from 13 minutes to 45 milliseconds using BVH-
+based hybrid optimization
+Tools: C++, BVH, Swift, Metal
+Certifications
+Supervised Machine Learning : Regression and Classification
+DeepLearning.AI, Stanford Online
+September 3,2023
+https://www.coursera.org/verify/PV9XRUHWGBBQ
+Technical Skills
+Languages: Python, C, R, Java
+Machine Learning: TensorFlow, PyTorch, scikit-learn, CNN, HMM, GMM
+Data Analytics: Statistical Analysis, Time Series, EDA, PCA
+Big Data: Apache Kafka, Spark, Hadoop, MapReduce
+Web Development: React.js, HTML, CSS, JavaScript
+Tools & Platforms: Docker, Git, SQL
+Experience
+Infobells
+Website Designer
+june 2024-july 2024
+Designed a responsive website using Hostinger and WordPress, improving site functionality and user engagement
+Awards
+InGenious 11.0 Hackathon, Open Innovation Track
+PES University
+28 April 2023- 29th April 2023
+Developed an disaster management and assistance robot for office navigation and first aid delivery
+CNR Rao Merit Scholarship
+PES University — Semester 5
+Awarded to students with top 20% SGPA performance in the department.
+Extracurricular Activities
+3D Animation Workshop Instructor: Taught Blender to ~98 students, covering basics of modeling, rigging, and
+animation in hands-on sessions. Collaborated with the Parallax Club to host and manage the event logistics.
+Core Member, Parallax (Game Development and AR/VR Club)
+University Basketball Team Member (2022–2023)
