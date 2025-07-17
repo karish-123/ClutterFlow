@@ -8,6 +8,7 @@ import json
 
 from services.llm_service import llm_service
 from services.database import db_service
+from services.subject_service import subject_service  # ADD THIS IMPORT
 from models.schemas import (
     ProcessingQueueCreate, ProcessingQueueUpdate, TaskType, TaskStatus,
     DocumentSummaryCreate, DocumentClassificationCreate, SummaryType
@@ -205,9 +206,47 @@ class BackgroundProcessor:
                 .execute()
             
             if db_result.data:
+                logger.info(f"✅ Classification completed for document {document_id}")
+                
+                # 🚀 NEW: AUTO-ASSIGNMENT LOGIC
+                try:
+                    logger.info(f"🎯 Attempting auto-assignment for document {document_id}")
+                    
+                    # Get AI suggestion for best subject
+                    suggestion = await subject_service.suggest_subject_for_document(document_id)
+                    
+                    if suggestion and suggestion.get('subject_id'):
+                        confidence = suggestion.get('confidence', 0.0)
+                        subject_name = suggestion.get('subject_name', 'Unknown')
+                        
+                        logger.info(f"🤖 AI suggests subject '{subject_name}' with confidence {confidence:.2%}")
+                        
+                        # Auto-assign if confidence is high enough
+                        CONFIDENCE_THRESHOLD = 0.6  # 60% confidence threshold
+                        
+                        if confidence >= CONFIDENCE_THRESHOLD:
+                            success = await subject_service.assign_document_to_subject(
+                                document_id=document_id,
+                                subject_id=UUID(suggestion['subject_id']),
+                                confidence=confidence,
+                                auto_assigned=True  # Mark as auto-assigned
+                            )
+                            
+                            if success:
+                                logger.info(f"✅ Auto-assigned document {document_id} to subject '{subject_name}' (confidence: {confidence:.2%})")
+                            else:
+                                logger.warning(f"⚠️ Failed to auto-assign document {document_id} to subject '{subject_name}'")
+                        else:
+                            logger.info(f"🔄 Confidence too low ({confidence:.2%}) for auto-assignment. Document remains unclassified.")
+                    else:
+                        logger.info(f"🔄 No suitable subject found for document {document_id}. Document remains unclassified.")
+                        
+                except Exception as assignment_error:
+                    logger.error(f"❌ Auto-assignment failed for document {document_id}: {assignment_error}")
+                    # Don't fail the entire classification task if auto-assignment fails
+                
                 # Mark task as completed
                 await self.update_task_status(task_id, TaskStatus.completed, completed_at=datetime.utcnow())
-                logger.info(f"✅ Classification completed for document {document_id}")
                 return True
             else:
                 raise Exception("Failed to save classification to database")
