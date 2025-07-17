@@ -3,6 +3,8 @@ from supabase import create_client, Client
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.exc import SQLAlchemyError
+# Add this import at the top of services/database.py
+from datetime import datetime
 from typing import Optional, List
 import logging
 from uuid import UUID
@@ -139,6 +141,30 @@ class DatabaseService:
             session.rollback()
             logger.error(f"Error deleting document: {e}")
             return False
+        finally:
+            session.close()
+    async def update_document(self, document_id: UUID, update_data: dict) -> Optional[Document]:
+        session = self.get_session()
+        try:
+            document = session.query(Document).filter(Document.id == document_id).first()
+            if document:
+                # Update fields
+                for key, value in update_data.items():
+                    if hasattr(document, key):
+                        setattr(document, key, value)
+                
+                # Update timestamp
+                document.updated_at = datetime.utcnow()
+                
+                session.commit()
+                session.refresh(document)
+                logger.info(f"✅ Updated document {document_id}")
+                return document
+            return None
+        except SQLAlchemyError as e:
+            session.rollback()
+            logger.error(f"❌ Error updating document {document_id}: {e}")
+            return None
         finally:
             session.close()
 
