@@ -145,17 +145,29 @@ const DocumentLibrary = () => {
       <div className="header">
         <div className="container">
           <div className="header-content">
-            <button 
-              onClick={() => navigate('/')}
-              style={{ 
-                background: 'none', 
-                border: 'none', 
-                fontSize: '24px', 
-                cursor: 'pointer' 
-              }}
-            >
-              🏠
-            </button>
+          <button 
+  onClick={() => navigate('/')}
+  style={{ 
+    background: 'none', 
+    border: 'none', 
+    cursor: 'pointer', 
+    padding: '4px',
+    display: 'flex',
+    alignItems: 'center'
+  }}
+  aria-label="Home"
+>
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="black" 
+    width="28px" 
+    height="28px"
+  >
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+  </svg>
+</button>
+
             <div className="logo-text">CLUTTERFLOW</div>
             <div></div>
           </div>

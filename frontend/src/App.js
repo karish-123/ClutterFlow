@@ -1,3 +1,5 @@
+
+// export default App;
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './index.css';
@@ -97,8 +99,14 @@ const Dashboard = () => {
     }
   };
 
+  // Updated color array with your specified colors and translucency
   const subjectColors = [
-    '#8B7355', '#9CA3AF', '#D4C4A0', '#6B7280', '#A78BFA', '#F59E0B'
+    'rgba(162, 139, 108, 0.6)', // A28B6C with translucency
+    'rgba(192, 192, 192, 0.6)', // C0C0C0 with translucency
+    'rgba(213, 196, 167, 0.6)', // D5C4A7 with translucency
+    'rgba(162, 139, 108, 0.6)', // A28B6C with more translucency
+    'rgba(192, 192, 192, 0.6)', // C0C0C0 with more translucency
+    'rgba(213, 196, 167, 0.6)'  // D5C4A7 with more translucency
   ];
 
   return (
@@ -122,7 +130,8 @@ const Dashboard = () => {
                   cursor: 'pointer',
                   padding: '8px',
                   zIndex: 10001,
-                  position: 'relative'
+                  position: 'relative',
+                  color: 'white'
                 }}
               >
                 ☰
@@ -153,8 +162,8 @@ const Dashboard = () => {
                     position: 'absolute',
                     top: '100%',
                     left: '-50px',
-                    background: 'white',
-                    border: '1px solid #e5e7eb',
+                    background: 'rgba(240, 237, 232, 0.95)',
+                    border: '1px solid rgba(162, 139, 108, 0.3)',
                     borderRadius: '8px',
                     boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
                     zIndex: 9999,
@@ -162,50 +171,64 @@ const Dashboard = () => {
                     marginTop: '4px'
                   }}>
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        console.log('🏠 Dashboard clicked!');
-                        setShowDropdown(false);
-                        navigate('/');
-                      }}
-                      style={{
-                        width: '100%',
-                        padding: '12px 16px',
-                        border: 'none',
-                        background: 'none',
-                        textAlign: 'left',
-                        cursor: 'pointer',
-                        fontSize: '16px',
-                        color: '#374151'
-                      }}
-                      onMouseEnter={(e) => e.target.style.backgroundColor = '#f3f4f6'}
-                      onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
-                    >
-                      🏠 Dashboard
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        console.log('📚 Document Library clicked!');
-                        setShowDropdown(false);
-                        navigate('/library');
-                      }}
-                      style={{
-                        width: '100%',
-                        padding: '12px 16px',
-                        border: 'none',
-                        background: 'none',
-                        textAlign: 'left',
-                        cursor: 'pointer',
-                        fontSize: '16px',
-                        color: '#374151',
-                        borderTop: '1px solid #f3f4f6'
-                      }}
-                      onMouseEnter={(e) => e.target.style.backgroundColor = '#f3f4f6'}
-                      onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
-                    >
-                      📚 Document Library
-                    </button>
+  onClick={(e) => {
+    e.stopPropagation();
+    console.log('🏠 Dashboard clicked!');
+    setShowDropdown(false);
+    navigate('/');
+  }}
+  style={{
+    width: '100%',
+    padding: '12px 16px',
+    border: 'none',
+    background: 'none',
+    textAlign: 'left',
+    cursor: 'pointer',
+    fontSize: '16px',
+    color: '#374151',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px'
+  }}
+  onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(162, 139, 108, 0.1)'}
+  onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="black" width="20" height="20" viewBox="0 0 24 24">
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+  </svg>
+  Dashboard
+</button>
+
+<button
+  onClick={(e) => {
+    e.stopPropagation();
+    console.log('📚 Document Library clicked!');
+    setShowDropdown(false);
+    navigate('/library');
+  }}
+  style={{
+    width: '100%',
+    padding: '12px 16px',
+    border: 'none',
+    background: 'none',
+    textAlign: 'left',
+    cursor: 'pointer',
+    fontSize: '16px',
+    color: '#374151',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+    borderTop: '1px solid rgba(162, 139, 108, 0.2)'
+  }}
+  onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(162, 139, 108, 0.1)'}
+  onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="black" width="20" height="20" viewBox="0 0 24 24">
+    <path d="M4 6v16h16V6H4zm4 2h8v2H8V8zm0 4h8v2H8v-2zm0 4h5v2H8v-2zM6 2h12v2H6V2z"/>
+  </svg>
+  Document Library
+</button>
+
                   </div>
                 </>
               )}
