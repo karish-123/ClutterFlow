@@ -9,6 +9,12 @@ import logging
 from typing import Optional
 from uuid import UUID
 from typing import Optional, List  # Add List to your existing typing imports
+
+import sys
+
+print("DEBUG: Current Working Directory (CWD):", os.getcwd())
+print("DEBUG: PYTHONPATH environment variable:", os.environ.get('PYTHONPATH'))
+print("DEBUG: sys.path at main.py startup:", sys.path)
 # Imports
 from services.text_extractor import TextExtractor, ExtractionResult
 from services.database import db_service
@@ -23,6 +29,8 @@ from models.schemas import (
     TaskType  # Add this missing import
 )
 from config.settings import settings
+
+
 
 # Logging
 logging.basicConfig(level=logging.INFO)
