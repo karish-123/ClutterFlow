@@ -1,11 +1,13 @@
 [phases.setup]
-# Ensure 'file' is present, which contains libmagic
 nixPkgs = ["python311", "file", "tesseract", "poppler_utils"]
 
 [phases.install]
 cmds = ["python3.11 -m venv .venv && source .venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt"]
 
 [start]
-# Explicitly source the Nix profile's environment setup before running your app
-# This ensures LD_LIBRARY_PATH and other env vars are correctly set for C libraries
-cmd = "source /root/.nix-profile/etc/profile.d/nix.sh && source .venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port $PORT"
+# 1. Find the exact directory of libmagic.so
+# 2. Prepend that directory to LD_LIBRARY_PATH
+# 3. Source Nix profile (for general Nix env vars)
+# 4. Source Python virtual environment
+# 5. Run Uvicorn
+cmd = "LIBMAGIC_DIR=$(find /nix/store -type f -name 'libmagic.so*' 2>/dev/null | head -n 1 | xargs dirname) && export LD_LIBRARY_PATH=\"$LIBMAGIC_DIR:$LD_LIBRARY_PATH\" && source /root/.nix-profile/etc/profile.d/nix.sh && source .venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port $PORT"
