@@ -181,9 +181,8 @@ class BackgroundProcessor:
             if not raw_text or len(raw_text.strip()) < 20:
                 raise Exception("Insufficient text for classification")
             
-            # Generate classification using LLM
-            classification_result = await llm_service.classify_topic(raw_text)
-            
+            # Generate classification using LLM with database subjects
+            classification_result = await llm_service.classify_with_db_subjects(raw_text, db_service)
             # Extract classification data from LLM metadata
             metadata = classification_result.metadata
             
