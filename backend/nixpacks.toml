@@ -1,14 +1,13 @@
 [phases.setup]
 nixPkgs = ["python311", "file", "tesseract", "poppler_utils"]
-# No need for python311Packages.pip here, as we'll use pip from the venv
 
 [phases.install]
-# Explicitly create and activate a virtual environment, then install dependencies
 cmds = [
-    "python3.11 -m venv .venv",       # 1. Create a virtual environment named .venv
-    "source .venv/bin/activate",      # 2. Activate the virtual environment
-    "pip install --upgrade pip",      # 3. (Optional but good practice) Upgrade pip within the venv
-    "pip install -r requirements.txt" # 4. Install your project's dependencies into the venv
+    # All these commands run in a single shell session
+    "python3.11 -m venv .venv && " # Create venv
+    "source .venv/bin/activate && " # Activate venv
+    "pip install --upgrade pip && " # Upgrade pip within the venv
+    "pip install -r requirements.txt" # Install dependencies into the venv
 ]
 
 [start]
