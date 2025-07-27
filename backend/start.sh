@@ -17,12 +17,18 @@ source /root/.nix-profile/etc/profile.d/nix.sh
 source "${APP_ROOT}/.venv/bin/activate"
 
 # Explicitly add app root to Python path
-# This should be redundant with --app-dir but ensures it's set
 export PYTHONPATH="${APP_ROOT}:${PYTHONPATH}"
 
+# --- Add more debug prints to check shell environment ---
 echo "DEBUG: Current Working Directory (CWD): $(pwd)"
 echo "DEBUG: PYTHONPATH environment variable: ${PYTHONPATH}"
 echo "DEBUG: LD_LIBRARY_PATH environment variable: ${LD_LIBRARY_PATH}"
+echo "DEBUG: PATH environment variable: ${PATH}" # NEW: Print PATH
+echo "DEBUG: About to run uvicorn as a Python module..."
+# --------------------------------------------------------
 
-# Execute Uvicorn, explicitly telling it the app directory
-uvicorn main:app --app-dir "${APP_ROOT}" --host 0.0.0.0 --port "$PORT"
+# Change this line:
+# uvicorn main:app --app-dir "${APP_ROOT}" --host 0.0.0.0 --port "$PORT"
+
+# To this:
+python -m uvicorn main:app --app-dir "${APP_ROOT}" --host 0.0.0.0 --port "$PORT"

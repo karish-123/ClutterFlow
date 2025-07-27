@@ -10,8 +10,7 @@ import logging
 from uuid import UUID
 
 from config.settings import settings
-from ..models.database_models import Base, Document, ExtractedText
-#from models.database_models import Base, Document, ExtractedText
+from models.database_models import Base, Document, ExtractedText
 from models.schemas import DocumentCreate, ExtractedTextCreate, DocumentUpdate
 
 logger = logging.getLogger(__name__)
