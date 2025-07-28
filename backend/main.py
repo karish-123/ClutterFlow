@@ -10,20 +10,6 @@ from typing import Optional
 from uuid import UUID
 from typing import Optional, List  # Add List to your existing typing imports
 
-import sys
-
-
-# --- NEW CRITICAL BLOCK ---
-# Ensure /app is explicitly added to sys.path at the very beginning
-# This is a direct Python-level manipulation of the search path.
-if '/app' not in sys.path:
-    sys.path.insert(0, '/app')
-# --- END NEW CRITICAL BLOCK ---
-
-
-print("DEBUG: Current Working Directory (CWD):", os.getcwd())
-print("DEBUG: PYTHONPATH environment variable:", os.environ.get('PYTHONPATH'))
-print("DEBUG: sys.path at main.py startup (after manual insert):", sys.path)
 # Imports
 from services.text_extractor import TextExtractor, ExtractionResult
 from services.database import db_service

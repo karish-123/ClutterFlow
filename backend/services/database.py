@@ -1,20 +1,4 @@
 # backend/services/database.py
-import sys
-import os
-
-# --- NEW HACKY BLOCK ---
-# This tries to force the issue if 'models' is not found directly relative to /app
-# It adds the directory *containing* 'services' (which is /app) to sys.path
-# This should be redundant, but might bypass a Uvicorn/importlib quirk.
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(current_dir) # This should resolve to /app
-
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
-# --- END NEW HACKY BLOCK ---
-
-
-
 from supabase import create_client, Client
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
