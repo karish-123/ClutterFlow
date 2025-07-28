@@ -1,11 +1,9 @@
-# Start with your chosen Python version
+# version 2
 FROM python:3.11-slim
 
-# Set environment variables to non-interactively install packages
+# Set environment variables...
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TESSDATA_PREFIX=/usr/share/tesseract-ocr/4.00/tessdata
-
-# THIS IS THE FIX for ModuleNotFoundError
 ENV PYTHONPATH /app
 
 # Install system-level dependencies
