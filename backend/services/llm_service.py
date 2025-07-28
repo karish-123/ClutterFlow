@@ -594,7 +594,9 @@ Make sure the JSON is valid."""
             # subjects_result = db_service.supabase.table('subjects').select('name').execute()
             subjects_result = db_service.supabase.table('user_subjects').select('subject_name').eq('is_active', True).execute()
             if subjects_result.data:
-                available_subjects = [subject['name'].strip() for subject in subjects_result.data]  # Strip whitespace
+                # available_subjects = [subject['name'].strip() for subject in subjects_result.data]  # Strip whitespace
+                # In your llm_service.py, line 268, change this:
+                available_subjects = [subject['subject_name'].strip() for subject in subjects_result.data]
                 logger.info(f"📚 Using {len(available_subjects)} subjects from database")
                 logger.debug(f"Available subjects: {available_subjects}")
             else:
