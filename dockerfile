@@ -31,4 +31,4 @@ COPY backend/ /app/
 
 # Cloud Run provides the PORT environment variable that your container should listen on
 # Gunicorn is a production-grade server to run our FastAPI app
-CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "main:app", "--bind", "0.0.0.0:$PORT"]
+CMD ["gunicorn", "-w" , "4" , "-k" , "uvicorn.workers.UvicornWorker" , "main:app" , "--bind" , "0.0.0.0:$PORT"]
