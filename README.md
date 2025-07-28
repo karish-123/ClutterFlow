@@ -9,7 +9,6 @@ Managing digital documents is a nightmare. Files get scattered across folders, n
 ## My Solution
 ClutterFlow combines modern AI with efficient document processing creating an intelligent filing system. Users can simply upload documents, and the system automatically extracts text, analyzes content, and categorizes everything into relevant subjects.
 
-![Architecture Overview](screenshots/architecture.png)
 
 ## System Architecture
 
