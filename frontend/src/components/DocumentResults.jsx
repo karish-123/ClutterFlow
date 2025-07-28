@@ -498,10 +498,13 @@
   
 // };
 
-// export default DocumentResults;
+/ src/components/DocumentResults.jsx
 
 import React, { useState } from 'react';
 import useDocumentPolling from './useDocumentPolling';
+
+// Define the API URL from environment variables
+const API_URL = process.env.REACT_APP_BACKEND_API_URL;
 
 const DocumentResults = ({ document, onClose, onSubjectAssigned }) => {
   const [selectedSubject, setSelectedSubject] = useState(null);
@@ -532,7 +535,7 @@ const DocumentResults = ({ document, onClose, onSubjectAssigned }) => {
 
   const fetchSubjects = async () => {
     try {
-      const response = await fetch('http://localhost:8000/subjects');
+      const response = await fetch(`${API_URL}/subjects`);
       if (response.ok) {
         const data = await response.json();
         setSubjects(data);
@@ -545,7 +548,7 @@ const DocumentResults = ({ document, onClose, onSubjectAssigned }) => {
   // NEW: Function to fetch the assigned subject details
   const fetchAssignedSubject = async (subjectId) => {
     try {
-      const response = await fetch(`http://localhost:8000/subjects/${subjectId}`);
+      const response = await fetch(`${API_URL}/subjects/${subjectId}`);
       if (response.ok) {
         const subjectData = await response.json();
         setAssignedSubject(subjectData);
@@ -560,7 +563,7 @@ const DocumentResults = ({ document, onClose, onSubjectAssigned }) => {
     if (!document?.id) return;
     
     try {
-      const response = await fetch(`http://localhost:8000/documents/${document.id}/assign-subject?subject_id=${subject.id}&confidence=1.0&auto_assigned=false`, {
+      const response = await fetch(`${API_URL}/documents/${document.id}/assign-subject?subject_id=${subject.id}&confidence=1.0&auto_assigned=false`, {
         method: 'POST',
       });
 
@@ -761,3 +764,4 @@ const DocumentResults = ({ document, onClose, onSubjectAssigned }) => {
 };
 
 export default DocumentResults;
+
