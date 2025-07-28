@@ -497,9 +497,6 @@
 //   );
   
 // };
-
-// src/components/DocumentResults.jsx
-
 import React, { useState } from 'react';
 import useDocumentPolling from './useDocumentPolling';
 
