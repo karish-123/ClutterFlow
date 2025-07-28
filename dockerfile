@@ -5,6 +5,9 @@ FROM python:3.11-slim
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TESSDATA_PREFIX=/usr/share/tesseract-ocr/4.00/tessdata
 
+# THIS IS THE FIX: Add the app directory to Python's path
+ENV PYTHONPATH /app
+
 # Install system-level dependencies required by your Python libraries
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -27,5 +30,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ /app/
 
 # This "shell form" of CMD ensures that $PORT is correctly interpreted.
-# This is the line we are changing.
 CMD gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app --bind "0.0.0.0:$PORT"
